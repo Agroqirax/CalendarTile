@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Tuile Calendrier</string>
+    <string name="tile_label">Prochain événement</string>
+
+    <string name="permission_explanation">Tuile Calendrier a besoin d\'accéder à votre calendrier pour afficher votre prochain événement dans la tuile des réglages rapides.</string>
+    <string name="grant_permission">Autoriser l\'accès</string>
+    <string name="calendar_list_header">Calendriers affichés dans la tuile</string>
+    <string name="no_calendars_found">Aucun calendrier trouvé sur cet appareil.</string>
+
+    <string name="tile_tap_to_grant_permission">Appuyez pour autoriser l\'accès</string>
+    <string name="tile_no_upcoming_events">Aucun événement à venir</string>
+    <string name="toast_no_calendar_app">Aucune application de calendrier trouvée</string>
+
+    <string name="calendar_unnamed">(Sans nom)</string>
+    <string name="event_no_title">(Sans titre)</string>
+    <string name="day_today">Aujourd\'hui</string>
+    <string name="day_tomorrow">Demain</string>
+</resources>

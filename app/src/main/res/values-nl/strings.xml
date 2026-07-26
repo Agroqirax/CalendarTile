@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Agenda Tegel</string>
+    <string name="tile_label">Volgende afspraak</string>
+
+    <string name="permission_explanation">Agenda Tegel heeft toegang tot je agenda nodig om je volgende afspraak in de snelle instellingen te tonen.</string>
+    <string name="grant_permission">Toestemming geven</string>
+    <string name="calendar_list_header">Agenda\'s in de tegel</string>
+    <string name="no_calendars_found">Geen agenda\'s gevonden op dit toestel.</string>
+
+    <string name="tile_tap_to_grant_permission">Tik om toestemming te geven</string>
+    <string name="tile_no_upcoming_events">Geen aankomende afspraken</string>
+    <string name="toast_no_calendar_app">Geen agenda-app gevonden</string>
+
+    <string name="calendar_unnamed">(Naamloos)</string>
+    <string name="event_no_title">(Geen titel)</string>
+    <string name="day_today">Vandaag</string>
+    <string name="day_tomorrow">Morgen</string>
+</resources>

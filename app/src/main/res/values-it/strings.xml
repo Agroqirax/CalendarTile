@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Riquadro Calendario</string>
+    <string name="tile_label">Prossimo evento</string>
+
+    <string name="permission_explanation">Riquadro Calendario necessita dell\'accesso al tuo calendario per mostrare il tuo prossimo evento nel riquadro delle impostazioni rapide.</string>
+    <string name="grant_permission">Concedi permesso</string>
+    <string name="calendar_list_header">Calendari mostrati nel riquadro</string>
+    <string name="no_calendars_found">Nessun calendario trovato su questo dispositivo.</string>
+
+    <string name="tile_tap_to_grant_permission">Tocca per concedere il permesso</string>
+    <string name="tile_no_upcoming_events">Nessun evento in arrivo</string>
+    <string name="toast_no_calendar_app">Nessuna app calendario trovata</string>
+
+    <string name="calendar_unnamed">(Senza nome)</string>
+    <string name="event_no_title">(Senza titolo)</string>
+    <string name="day_today">Oggi</string>
+    <string name="day_tomorrow">Domani</string>
+</resources>

@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Bloco de Calendário</string>
+    <string name="tile_label">Próximo evento</string>
+
+    <string name="permission_explanation">O Bloco de Calendário precisa de acesso ao seu calendário para mostrar o seu próximo evento no bloco de configurações rápidas.</string>
+    <string name="grant_permission">Conceder permissão</string>
+    <string name="calendar_list_header">Calendários mostrados no bloco</string>
+    <string name="no_calendars_found">Nenhum calendário encontrado neste dispositivo.</string>
+
+    <string name="tile_tap_to_grant_permission">Toque para conceder permissão</string>
+    <string name="tile_no_upcoming_events">Sem eventos futuros</string>
+    <string name="toast_no_calendar_app">Nenhuma aplicação de calendário encontrada</string>
+
+    <string name="calendar_unnamed">(Sem nome)</string>
+    <string name="event_no_title">(Sem título)</string>
+    <string name="day_today">Hoje</string>
+    <string name="day_tomorrow">Amanhã</string>
+</resources>

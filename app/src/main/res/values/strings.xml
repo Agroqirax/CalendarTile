@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Calendar Tile</string>
+    <string name="tile_label">Next Event</string>
+
+    <!-- MainActivity -->
+    <string name="permission_explanation">Calendar Tile needs access to your calendar to show your next event in the quick settings tile.</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="calendar_list_header">Calendars shown in the tile</string>
+    <string name="no_calendars_found">No calendars found on this device.</string>
+
+    <!-- Tile -->
+    <string name="tile_tap_to_grant_permission">Tap to grant permission</string>
+    <string name="tile_no_upcoming_events">No upcoming events</string>
+    <string name="toast_no_calendar_app">No calendar app found</string>
+
+    <!-- CalendarHelper -->
+    <string name="calendar_unnamed">(Unnamed)</string>
+    <string name="event_no_title">(No title)</string>
+    <string name="day_today">Today</string>
+    <string name="day_tomorrow">Tomorrow</string>
 </resources>
