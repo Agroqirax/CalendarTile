@@ -21,9 +21,17 @@ data class CalendarInfo(
     val color: Int
 )
 
+private data class CandidateEvent(
+    val eventId: Long,
+    val title: String,
+    val begin: Long,
+    val end: Long,
+    val allDay: Boolean
+)
+
 object CalendarHelper {
 
-    private const val LOOKAHEAD_MILLIS = 1000L * 60 * 60 * 24 * 14 // 14 days
+    private const val LOOKAHEAD_MILLIS = 1000L * 60 * 60 * 24 * 7 // 7 days
 
     fun hasPermission(context: Context): Boolean {
         return context.checkSelfPermission(android.Manifest.permission.READ_CALENDAR) ==
@@ -86,7 +94,9 @@ object CalendarHelper {
             CalendarContract.Instances.END,
             CalendarContract.Instances.ALL_DAY,
             CalendarContract.Instances.EVENT_ID,
-            CalendarContract.Instances.CALENDAR_ID
+            CalendarContract.Instances.CALENDAR_ID,
+            CalendarContract.Instances.SELF_ATTENDEE_STATUS,
+            CalendarContract.Instances.STATUS
         )
 
         val cursor = context.contentResolver.query(
@@ -94,13 +104,21 @@ object CalendarHelper {
             projection,
             "${CalendarContract.Instances.END} >= ?",
             arrayOf(now.toString()),
-            "${CalendarContract.Instances.BEGIN} ASC"
+            null
         ) ?: return null
+
+        val candidates = mutableListOf<CandidateEvent>()
 
         cursor.use {
             while (it.moveToNext()) {
                 val calendarId = it.getLong(5)
                 if (calendarId in ignoredCalendarIds) continue
+
+                val selfAttendeeStatus = it.getInt(6)
+                if (selfAttendeeStatus == CalendarContract.Attendees.ATTENDEE_STATUS_DECLINED) continue
+
+                val eventStatus = it.getInt(7)
+                if (eventStatus == CalendarContract.Events.STATUS_CANCELED) continue
 
                 val title = it.getString(0)?.takeIf { t -> t.isNotBlank() } ?: context.getString(R.string.event_no_title)
                 val begin = it.getLong(1)
@@ -108,44 +126,61 @@ object CalendarHelper {
                 val allDay = it.getInt(3) == 1
                 val eventId = it.getLong(4)
 
-                val timeLabel = if (allDay) {
-                    val cal = Calendar.getInstance().apply { timeInMillis = begin }
-                    val today = Calendar.getInstance()
-                    val tomorrow = Calendar.getInstance().apply { add(Calendar.DAY_OF_YEAR, 1) }
-
-                    when {
-                        cal.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
-                            cal.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR) ->
-                            context.getString(R.string.day_today)
-
-                        cal.get(Calendar.YEAR) == tomorrow.get(Calendar.YEAR) &&
-                            cal.get(Calendar.DAY_OF_YEAR) == tomorrow.get(Calendar.DAY_OF_YEAR) ->
-                            context.getString(R.string.day_tomorrow)
-
-                        else ->
-                            DateFormat.getMediumDateFormat(context).format(cal.time)
-                    }
-                } else {
-                    val cal = Calendar.getInstance().apply { timeInMillis = begin }
-                    val endCal = Calendar.getInstance().apply { timeInMillis = endTime }
-                    val today = Calendar.getInstance()
-                    val isToday = cal.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
-                        cal.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR)
-
-                    val startStr = DateFormat.getTimeFormat(context).format(cal.time)
-                    val endStr = DateFormat.getTimeFormat(context).format(endCal.time)
-
-                    if (isToday) {
-                        "$startStr–$endStr"
-                    } else {
-                        val dateStr = DateFormat.getMediumDateFormat(context).format(cal.time)
-                        "$dateStr $startStr–$endStr"
-                    }
-                }
-
-                return NextEvent(eventId, title, timeLabel, begin, endTime)
+                candidates.add(CandidateEvent(eventId, title, begin, endTime, allDay))
             }
         }
-        return null
+
+        val winner = candidates.minWithOrNull(
+            compareBy(
+                { candidate -> if (candidate.allDay) 1 else 0 },
+                { candidate -> if (candidate.begin <= now && candidate.end > now) 0 else 1 },
+                { candidate -> candidate.begin },
+                { candidate -> candidate.end - candidate.begin },
+                { candidate -> candidate.title }
+            )
+        ) ?: return null
+
+        val title = winner.title
+        val begin = winner.begin
+        val endTime = winner.end
+        val allDay = winner.allDay
+        val eventId = winner.eventId
+
+        val timeLabel = if (allDay) {
+            val cal = Calendar.getInstance().apply { timeInMillis = begin }
+            val today = Calendar.getInstance()
+            val tomorrow = Calendar.getInstance().apply { add(Calendar.DAY_OF_YEAR, 1) }
+
+            when {
+                cal.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+                    cal.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR) ->
+                    context.getString(R.string.day_today)
+
+                cal.get(Calendar.YEAR) == tomorrow.get(Calendar.YEAR) &&
+                    cal.get(Calendar.DAY_OF_YEAR) == tomorrow.get(Calendar.DAY_OF_YEAR) ->
+                    context.getString(R.string.day_tomorrow)
+
+                else ->
+                    DateFormat.getMediumDateFormat(context).format(cal.time)
+            }
+        } else {
+            val cal = Calendar.getInstance().apply { timeInMillis = begin }
+            val endCal = Calendar.getInstance().apply { timeInMillis = endTime }
+            val today = Calendar.getInstance()
+            val isToday = cal.get(Calendar.YEAR) == today.get(Calendar.YEAR) &&
+                cal.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR)
+
+            val startStr = DateFormat.getTimeFormat(context).format(cal.time)
+            val endStr = DateFormat.getTimeFormat(context).format(endCal.time)
+
+            if (isToday) {
+                "$startStr–$endStr"
+            } else {
+                val dateStr = DateFormat.getMediumDateFormat(context).format(cal.time)
+                "$dateStr $startStr–$endStr"
+            }
+        }
+
+        return NextEvent(eventId, title, timeLabel, begin, endTime)
     }
 }
