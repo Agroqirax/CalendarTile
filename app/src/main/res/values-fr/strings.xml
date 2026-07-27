@@ -8,7 +8,7 @@
     <string name="grant_permission">Autoriser l\'accès</string>
     <string name="calendar_list_header">Calendriers affichés dans la tuile</string>
     <string name="no_calendars_found">Aucun calendrier trouvé sur cet appareil.</string>
-    <string name="add_tile_instructions">Pour afficher la vignette du calendrier dans les paramètres rapides, faites glisser votre doigt deux fois vers le bas depuis le haut de votre écran, appuyez sur l'icône d'édition (crayon), puis faites glisser la vignette du calendrier dans vos vignettes.</string>
+    <string name="add_tile_instructions">Pour afficher la vignette du calendrier dans les paramètres rapides, faites glisser votre doigt deux fois vers le bas depuis le haut de votre écran, appuyez sur l\'icône d\'édition (crayon), puis faites glisser la vignette du calendrier dans vos vignettes.</string>
     <string name="add_tile_button">Ajouter aux paramètres rapides</string>
 
     <!-- Tile -->

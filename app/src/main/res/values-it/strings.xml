@@ -8,7 +8,7 @@
     <string name="grant_permission">Concedi permesso</string>
     <string name="calendar_list_header">Calendari mostrati nel riquadro</string>
     <string name="no_calendars_found">Nessun calendario trovato su questo dispositivo.</string>
-    <string name="add_tile_instructions">Per mostrare il riquadro Calendario nelle Impostazioni rapide, scorri due volte verso il basso dalla parte superiore dello schermo, tocca l'icona di modifica (matita), quindi trascina il riquadro Calendario nei riquadri.</string>
+    <string name="add_tile_instructions">Per mostrare il riquadro Calendario nelle Impostazioni rapide, scorri due volte verso il basso dalla parte superiore dello schermo, tocca l\'icona di modifica (matita), quindi trascina il riquadro Calendario nei riquadri.</string>
     <string name="add_tile_button">Aggiungi alle Impostazioni rapide</string>
 
     <!-- Tile -->
