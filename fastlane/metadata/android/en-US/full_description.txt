@@ -1,0 +1,16 @@
+Calendar Tile adds a Quick Settings tile that shows your next upcoming calendar event, right from the notification shade — no need to open a calendar app.
+
+Features:
+• Quick Settings tile — pull down the notification shade to see your next event's title and time.
+• Tap to open — tapping the tile opens that event directly in your default calendar app (or the calendar app at "now" if nothing is scheduled).
+• 7-day lookahead — surfaces the soonest event within the next week, preferring events happening right now over future ones.
+• Smart filtering — automatically skips declined and cancelled events.
+• Per-calendar toggles — choose exactly which calendars, across all your accounts, should be reflected in the tile.
+• Localized — available in English, Dutch, German, French, Spanish, Italian, and Portuguese.
+
+Requirements:
+• Android 7.0 (API 24) or later.
+• Per-tile subtitles require Android 10 (API 29) or later.
+
+Privacy:
+Calendar Tile only reads calendar data on your device to build the tile. Nothing is uploaded or shared.
