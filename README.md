@@ -17,8 +17,10 @@ An Android Quick Settings tile that shows your next upcoming calendar event, wit
 
 ## Screenshots
 
-<img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot_1.png" alt="QS tile screenshot" height=500em>
-<img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot_2.png" alt="App settings" height=500em>
+<div display=flex flex-direction=row>
+    <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot_1.png" alt="QS tile screenshot" height=500em>
+    <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/screenshot_2.png" alt="App settings" height=500em>
+</div>
 
 ## Setup
 
