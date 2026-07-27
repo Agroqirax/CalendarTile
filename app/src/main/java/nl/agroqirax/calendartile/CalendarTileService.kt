@@ -78,7 +78,7 @@ class CalendarTileService : TileService() {
                 @Suppress("DEPRECATION")
                 startActivityAndCollapse(pendingIntent)
             } else {
-                @Suppress("DEPRECATION")
+                @Suppress("DEPRECATION", "StartActivityAndCollapseDeprecated")
                 startActivityAndCollapse(intent)
             }
         } catch (e: ActivityNotFoundException) {
