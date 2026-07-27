@@ -5,6 +5,9 @@ An Android Quick Settings tile that shows your next upcoming calendar event, wit
 [<img src="https://raw.githubusercontent.com/Kunzisoft/Github-badge/main/get-it-on-github.png"
     alt="Get it on GitHub"
     height="80">](https://github.com/agroqirax/calendarTile/releases/latest)
+[<img src="https://github.com/ImranR98/Obtainium/raw/main/assets/graphics/badge_obtainium.png"
+    alt="Get it on Obtainium"
+    height="80">](https://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/agroqirax/calendartile)
 
 ## Features
 
