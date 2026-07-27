@@ -1,16 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="app_name">Riquadro Calendario</string>
     <string name="tile_label">Prossimo evento</string>
 
+    <!-- MainActivity -->
     <string name="permission_explanation">Riquadro Calendario necessita dell\'accesso al tuo calendario per mostrare il tuo prossimo evento nel riquadro delle impostazioni rapide.</string>
     <string name="grant_permission">Concedi permesso</string>
     <string name="calendar_list_header">Calendari mostrati nel riquadro</string>
     <string name="no_calendars_found">Nessun calendario trovato su questo dispositivo.</string>
+    <string name="add_tile_instructions">Per mostrare il riquadro Calendario nelle Impostazioni rapide, scorri due volte verso il basso dalla parte superiore dello schermo, tocca l'icona di modifica (matita), quindi trascina il riquadro Calendario nei riquadri.</string>
+    <string name="add_tile_button">Aggiungi alle Impostazioni rapide</string>
 
+    <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Tocca per concedere il permesso</string>
     <string name="tile_no_upcoming_events">Nessun evento in arrivo</string>
     <string name="toast_no_calendar_app">Nessuna app calendario trovata</string>
 
+    <!-- CalendarHelper -->
     <string name="calendar_unnamed">(Senza nome)</string>
     <string name="event_no_title">(Senza titolo)</string>
     <string name="day_today">Oggi</string>

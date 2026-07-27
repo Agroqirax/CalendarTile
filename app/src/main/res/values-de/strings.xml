@@ -1,16 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="app_name">Kalender-Kachel</string>
     <string name="tile_label">Nächster Termin</string>
 
+    <!-- MainActivity -->
     <string name="permission_explanation">Kalender-Kachel benötigt Zugriff auf deinen Kalender, um deinen nächsten Termin in der Schnelleinstellungskachel anzuzeigen.</string>
     <string name="grant_permission">Berechtigung erteilen</string>
     <string name="calendar_list_header">Kalender in der Kachel</string>
     <string name="no_calendars_found">Keine Kalender auf diesem Gerät gefunden.</string>
+    <string name="add_tile_instructions">Um die Kalenderkachel in den Schnelleinstellungen anzuzeigen, wischen Sie zweimal vom oberen Bildschirmrand nach unten, tippen Sie auf das Bearbeitungssymbol (Bleistift) und ziehen Sie dann die Kalenderkachel in Ihre Kacheln.</string>
+    <string name="add_tile_button">Zu den Schnelleinstellungen hinzufügen</string>
 
+    <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Tippen, um Berechtigung zu erteilen</string>
     <string name="tile_no_upcoming_events">Keine anstehenden Termine</string>
     <string name="toast_no_calendar_app">Keine Kalender-App gefunden</string>
 
+    <!-- CalendarHelper -->
     <string name="calendar_unnamed">(Unbenannt)</string>
     <string name="event_no_title">(Kein Titel)</string>
     <string name="day_today">Heute</string>

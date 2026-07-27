@@ -1,16 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="app_name">Agenda Tegel</string>
     <string name="tile_label">Volgende afspraak</string>
 
+    <!-- MainActivity -->
     <string name="permission_explanation">Agenda Tegel heeft toegang tot je agenda nodig om je volgende afspraak in de snelle instellingen te tonen.</string>
     <string name="grant_permission">Toestemming geven</string>
     <string name="calendar_list_header">Agenda\'s in de tegel</string>
     <string name="no_calendars_found">Geen agenda\'s gevonden op dit toestel.</string>
+    <string name="add_tile_instructions">Om Agendategel in Snelle instellingen weer te geven, veegt u twee keer omlaag vanaf de bovenkant van uw scherm, tikt u op het bewerkingspictogram (potlood) en sleept u vervolgens Agendategel naar uw tegels.</string>
+    <string name="add_tile_button">Toevoegen aan Snelle instellingen</string>
 
+    <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Tik om toestemming te geven</string>
     <string name="tile_no_upcoming_events">Geen aankomende afspraken</string>
     <string name="toast_no_calendar_app">Geen agenda-app gevonden</string>
 
+    <!-- CalendarHelper -->
     <string name="calendar_unnamed">(Naamloos)</string>
     <string name="event_no_title">(Geen titel)</string>
     <string name="day_today">Vandaag</string>

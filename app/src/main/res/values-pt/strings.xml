@@ -1,16 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="app_name">Bloco de Calendário</string>
     <string name="tile_label">Próximo evento</string>
 
+    <!-- MainActivity -->
     <string name="permission_explanation">O Bloco de Calendário precisa de acesso ao seu calendário para mostrar o seu próximo evento no bloco de configurações rápidas.</string>
     <string name="grant_permission">Conceder permissão</string>
     <string name="calendar_list_header">Calendários mostrados no bloco</string>
     <string name="no_calendars_found">Nenhum calendário encontrado neste dispositivo.</string>
+    <string name="add_tile_instructions">Para mostrar o bloco de calendário nas configurações rápidas, deslize de cima para baixo duas vezes na tela, toque no ícone de edição (lápis) e arraste o bloco de calendário para seus blocos.</string>
+    <string name="add_tile_button">Adicionar às configurações rápidas</string>
 
+    <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Toque para conceder permissão</string>
     <string name="tile_no_upcoming_events">Sem eventos futuros</string>
     <string name="toast_no_calendar_app">Nenhuma aplicação de calendário encontrada</string>
 
+    <!-- CalendarHelper -->
     <string name="calendar_unnamed">(Sem nome)</string>
     <string name="event_no_title">(Sem título)</string>
     <string name="day_today">Hoje</string>

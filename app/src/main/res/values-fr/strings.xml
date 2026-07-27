@@ -1,16 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <string name="app_name">Tuile Calendrier</string>
     <string name="tile_label">Prochain événement</string>
 
+    <!-- MainActivity -->
     <string name="permission_explanation">Tuile Calendrier a besoin d\'accéder à votre calendrier pour afficher votre prochain événement dans la tuile des réglages rapides.</string>
     <string name="grant_permission">Autoriser l\'accès</string>
     <string name="calendar_list_header">Calendriers affichés dans la tuile</string>
     <string name="no_calendars_found">Aucun calendrier trouvé sur cet appareil.</string>
+    <string name="add_tile_instructions">Pour afficher la vignette du calendrier dans les paramètres rapides, faites glisser votre doigt deux fois vers le bas depuis le haut de votre écran, appuyez sur l'icône d'édition (crayon), puis faites glisser la vignette du calendrier dans vos vignettes.</string>
+    <string name="add_tile_button">Ajouter aux paramètres rapides</string>
 
+    <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Appuyez pour autoriser l\'accès</string>
     <string name="tile_no_upcoming_events">Aucun événement à venir</string>
     <string name="toast_no_calendar_app">Aucune application de calendrier trouvée</string>
 
+    <!-- CalendarHelper -->
     <string name="calendar_unnamed">(Sans nom)</string>
     <string name="event_no_title">(Sans titre)</string>
     <string name="day_today">Aujourd\'hui</string>

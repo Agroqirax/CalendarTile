@@ -1,7 +1,10 @@
 package nl.agroqirax.calendartile
 
 import android.Manifest
+import android.app.StatusBarManager
 import android.content.ComponentName
+import android.graphics.drawable.Icon
+import android.os.Build
 import android.os.Bundle
 import android.service.quicksettings.TileService
 import androidx.activity.ComponentActivity
@@ -51,6 +54,7 @@ class MainActivity : ComponentActivity() {
         permissionGrantedState.value = granted
         if (granted) {
             calendarsState.value = CalendarHelper.getCalendars(this)
+            requestAddTile()
         }
         requestTileUpdate()
     }
@@ -82,7 +86,8 @@ class MainActivity : ComponentActivity() {
                         onToggleCalendar = { calendarId, enabled ->
                             CalendarPrefs.setCalendarIgnored(this, calendarId, !enabled)
                             requestTileUpdate()
-                        }
+                        },
+                        onAddTileClick = { requestAddTile() }
                     )
                 }
             }
@@ -104,6 +109,18 @@ class MainActivity : ComponentActivity() {
             ComponentName(this, CalendarTileService::class.java)
         )
     }
+
+    private fun requestAddTile() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
+
+        val statusBarManager = getSystemService(StatusBarManager::class.java) ?: return
+        statusBarManager.requestAddTileService(
+            ComponentName(this, CalendarTileService::class.java),
+            getString(R.string.tile_label),
+            Icon.createWithResource(this, R.drawable.ic_calendar),
+            mainExecutor
+        ) { /* result ignored; system already no-ops if the tile is already added */ }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -113,7 +130,8 @@ fun CalendarTileApp(
     calendars: List<CalendarInfo>,
     ignoredIds: Set<Long>,
     onRequestPermission: () -> Unit,
-    onToggleCalendar: (Long, Boolean) -> Unit
+    onToggleCalendar: (Long, Boolean) -> Unit,
+    onAddTileClick: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -136,7 +154,8 @@ fun CalendarTileApp(
                     .padding(padding),
                 calendars = calendars,
                 ignoredIds = ignoredIds,
-                onToggleCalendar = onToggleCalendar
+                onToggleCalendar = onToggleCalendar,
+                onAddTileClick = onAddTileClick
             )
         }
     }
@@ -177,9 +196,12 @@ fun CalendarListScreen(
     modifier: Modifier = Modifier,
     calendars: List<CalendarInfo>,
     ignoredIds: Set<Long>,
-    onToggleCalendar: (Long, Boolean) -> Unit
+    onToggleCalendar: (Long, Boolean) -> Unit,
+    onAddTileClick: () -> Unit
 ) {
     Column(modifier = modifier) {
+        AddTileSection(onAddTileClick = onAddTileClick)
+
         Text(
             text = stringResource(R.string.calendar_list_header),
             style = MaterialTheme.typography.titleMedium,
@@ -206,6 +228,26 @@ fun CalendarListScreen(
                     )
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun AddTileSection(
+    modifier: Modifier = Modifier,
+    onAddTileClick: () -> Unit
+) {
+    Column(modifier = modifier.padding(16.dp)) {
+        Text(
+            text = stringResource(R.string.add_tile_instructions),
+            style = MaterialTheme.typography.bodyMedium
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        Button(
+            onClick = onAddTileClick,
+            enabled = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+        ) {
+            Text(stringResource(R.string.add_tile_button))
         }
     }
 }
