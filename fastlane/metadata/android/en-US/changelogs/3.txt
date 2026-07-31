@@ -1,0 +1,1 @@
+Add settings shortcut to the app's App Info screen
