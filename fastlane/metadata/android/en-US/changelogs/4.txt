@@ -1,0 +1,2 @@
+Redesigned the onboarding steps
+Improved visual hierarchy and spacing
