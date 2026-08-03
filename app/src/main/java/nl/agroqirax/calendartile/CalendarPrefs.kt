@@ -10,6 +10,7 @@ object CalendarPrefs {
 
     private const val PREFS_NAME = "calendar_tile_prefs"
     private const val KEY_IGNORED_IDS = "ignored_calendar_ids"
+    private const val KEY_REQUIRE_UNLOCK = "require_unlock"
 
     fun getIgnoredCalendarIds(context: Context): Set<Long> {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -28,5 +29,15 @@ object CalendarPrefs {
         prefs.edit()
             .putStringSet(KEY_IGNORED_IDS, current.map { it.toString() }.toSet())
             .apply()
+    }
+
+    fun isRequireUnlockEnabled(context: Context): Boolean {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        return prefs.getBoolean(KEY_REQUIRE_UNLOCK, false)
+    }
+
+    fun setRequireUnlock(context: Context, enabled: Boolean) {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit().putBoolean(KEY_REQUIRE_UNLOCK, enabled).apply()
     }
 }

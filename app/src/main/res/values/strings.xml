@@ -10,10 +10,13 @@
     <string name="no_calendars_found">No calendars found on this device.</string>
     <string name="add_tile_instructions">To show Calendar Tile in Quick Settings, swipe down twice from the top of your screen, tap the edit (pencil) icon, then drag Calendar Tile into your tiles.</string>
     <string name="add_tile_button">Add to Quick Settings</string>
+    <string name="require_unlock_label">Require unlock</string>
+    <string name="require_unlock_description">Hide your next event\'s details until you unlock your phone.</string>
 
     <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Tap to grant permission</string>
     <string name="tile_no_upcoming_events">No upcoming events</string>
+    <string name="tile_require_unlock_message">Unlock to see next event</string>
     <string name="toast_no_calendar_app">No calendar app found</string>
 
     <!-- CalendarHelper -->

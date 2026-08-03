@@ -10,10 +10,13 @@
     <string name="no_calendars_found">Nenhum calendário encontrado neste dispositivo.</string>
     <string name="add_tile_instructions">Para mostrar o bloco de calendário nas configurações rápidas, deslize de cima para baixo duas vezes na tela, toque no ícone de edição (lápis) e arraste o bloco de calendário para seus blocos.</string>
     <string name="add_tile_button">Adicionar às configurações rápidas</string>
+    <string name="require_unlock_label">Exigir desbloqueio</string>
+    <string name="require_unlock_description">Ocultar os detalhes do seu próximo evento até desbloquear o telefone.</string>
 
     <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Toque para conceder permissão</string>
     <string name="tile_no_upcoming_events">Sem eventos futuros</string>
+    <string name="tile_require_unlock_message">Desbloqueie para ver o próximo evento</string>
     <string name="toast_no_calendar_app">Nenhuma aplicação de calendário encontrada</string>
 
     <!-- CalendarHelper -->

@@ -10,10 +10,13 @@
     <string name="no_calendars_found">Aucun calendrier trouvé sur cet appareil.</string>
     <string name="add_tile_instructions">Pour afficher la vignette du calendrier dans les paramètres rapides, faites glisser votre doigt deux fois vers le bas depuis le haut de votre écran, appuyez sur l\'icône d\'édition (crayon), puis faites glisser la vignette du calendrier dans vos vignettes.</string>
     <string name="add_tile_button">Ajouter aux paramètres rapides</string>
+    <string name="require_unlock_label">Exiger le déverrouillage</string>
+    <string name="require_unlock_description">Masquer les détails de votre prochain événement jusqu\'à ce que vous déverrouilliez votre téléphone.</string>
 
     <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Appuyez pour autoriser l\'accès</string>
     <string name="tile_no_upcoming_events">Aucun événement à venir</string>
+    <string name="tile_require_unlock_message">Déverrouillez pour voir le prochain événement</string>
     <string name="toast_no_calendar_app">Aucune application de calendrier trouvée</string>
 
     <!-- CalendarHelper -->

@@ -108,7 +108,15 @@ class CalendarTileService : TileService() {
         val nextEvent = CalendarHelper.getNextEvent(this, ignored)
         currentEvent = nextEvent
 
-        if (nextEvent == null) {
+        val requireUnlock = CalendarPrefs.isRequireUnlockEnabled(this) && isSecure && isLocked
+
+        if (requireUnlock) {
+            tile.label = getString(R.string.tile_require_unlock_message)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                tile.subtitle = null
+            }
+            tile.state = Tile.STATE_INACTIVE
+        } else if (nextEvent == null) {
             tile.label = getString(R.string.tile_no_upcoming_events)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 tile.subtitle = null

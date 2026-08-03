@@ -10,10 +10,13 @@
     <string name="no_calendars_found">No se encontraron calendarios en este dispositivo.</string>
     <string name="add_tile_instructions">Para mostrar el mosaico del calendario en Configuración rápida, deslícese hacia abajo dos veces desde la parte superior de la pantalla, toque el ícono de edición (lápiz) y luego arrastre el mosaico del calendario a sus mosaicos.</string>
     <string name="add_tile_button">Agregar a configuración rápida</string>
+    <string name="require_unlock_label">Requerir desbloqueo</string>
+    <string name="require_unlock_description">Oculta los detalles de tu próximo evento hasta que desbloquees tu teléfono.</string>
 
     <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Toca para conceder permiso</string>
     <string name="tile_no_upcoming_events">Sin eventos próximos</string>
+    <string name="tile_require_unlock_message">Desbloquea para ver el próximo evento</string>
     <string name="toast_no_calendar_app">No se encontró ninguna aplicación de calendario</string>
 
     <!-- CalendarHelper -->

@@ -10,10 +10,13 @@
     <string name="no_calendars_found">Nessun calendario trovato su questo dispositivo.</string>
     <string name="add_tile_instructions">Per mostrare il riquadro Calendario nelle Impostazioni rapide, scorri due volte verso il basso dalla parte superiore dello schermo, tocca l\'icona di modifica (matita), quindi trascina il riquadro Calendario nei riquadri.</string>
     <string name="add_tile_button">Aggiungi alle Impostazioni rapide</string>
+    <string name="require_unlock_label">Richiedi sblocco</string>
+    <string name="require_unlock_description">Nascondi i dettagli del tuo prossimo evento finché non sblocchi il telefono.</string>
 
     <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Tocca per concedere il permesso</string>
     <string name="tile_no_upcoming_events">Nessun evento in arrivo</string>
+    <string name="tile_require_unlock_message">Sblocca per vedere il prossimo evento</string>
     <string name="toast_no_calendar_app">Nessuna app calendario trovata</string>
 
     <!-- CalendarHelper -->

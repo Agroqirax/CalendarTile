@@ -61,6 +61,7 @@ class MainActivity : ComponentActivity() {
 
     private val permissionGrantedState = mutableStateOf(false)
     private val calendarsState = mutableStateOf<List<CalendarInfo>>(emptyList())
+    private val requireUnlockState = mutableStateOf(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +70,7 @@ class MainActivity : ComponentActivity() {
         if (permissionGrantedState.value) {
             calendarsState.value = CalendarHelper.getCalendars(this)
         }
+        requireUnlockState.value = CalendarPrefs.isRequireUnlockEnabled(this)
 
         setContent {
             CalendarTileTheme {
@@ -80,11 +82,16 @@ class MainActivity : ComponentActivity() {
                         permissionGranted = permissionGrantedState.value,
                         calendars = calendarsState.value,
                         ignoredIds = CalendarPrefs.getIgnoredCalendarIds(this),
+                        requireUnlock = requireUnlockState.value,
                         onRequestPermission = {
                             requestPermissionLauncher.launch(Manifest.permission.READ_CALENDAR)
                         },
                         onToggleCalendar = { calendarId, enabled ->
                             CalendarPrefs.setCalendarIgnored(this, calendarId, !enabled)
+                            requestTileUpdate()
+                        },
+                        onToggleRequireUnlock = { enabled ->
+                            CalendarPrefs.setRequireUnlock(this, enabled)
                             requestTileUpdate()
                         },
                         onAddTileClick = { requestAddTile() }
@@ -101,6 +108,7 @@ class MainActivity : ComponentActivity() {
         if (granted) {
             calendarsState.value = CalendarHelper.getCalendars(this)
         }
+        requireUnlockState.value = CalendarPrefs.isRequireUnlockEnabled(this)
     }
 
     private fun requestTileUpdate() {
@@ -129,8 +137,10 @@ fun CalendarTileApp(
     permissionGranted: Boolean,
     calendars: List<CalendarInfo>,
     ignoredIds: Set<Long>,
+    requireUnlock: Boolean,
     onRequestPermission: () -> Unit,
     onToggleCalendar: (Long, Boolean) -> Unit,
+    onToggleRequireUnlock: (Boolean) -> Unit,
     onAddTileClick: () -> Unit
 ) {
     Scaffold(
@@ -154,7 +164,9 @@ fun CalendarTileApp(
                     .padding(padding),
                 calendars = calendars,
                 ignoredIds = ignoredIds,
+                requireUnlock = requireUnlock,
                 onToggleCalendar = onToggleCalendar,
+                onToggleRequireUnlock = onToggleRequireUnlock,
                 onAddTileClick = onAddTileClick
             )
         }
@@ -196,11 +208,18 @@ fun CalendarListScreen(
     modifier: Modifier = Modifier,
     calendars: List<CalendarInfo>,
     ignoredIds: Set<Long>,
+    requireUnlock: Boolean,
     onToggleCalendar: (Long, Boolean) -> Unit,
+    onToggleRequireUnlock: (Boolean) -> Unit,
     onAddTileClick: () -> Unit
 ) {
     Column(modifier = modifier) {
         AddTileSection(onAddTileClick = onAddTileClick)
+
+        RequireUnlockSection(
+            requireUnlock = requireUnlock,
+            onToggleRequireUnlock = onToggleRequireUnlock
+        )
 
         Text(
             text = stringResource(R.string.calendar_list_header),
@@ -249,6 +268,42 @@ fun AddTileSection(
         ) {
             Text(stringResource(R.string.add_tile_button))
         }
+    }
+}
+
+@Composable
+fun RequireUnlockSection(
+    modifier: Modifier = Modifier,
+    requireUnlock: Boolean,
+    onToggleRequireUnlock: (Boolean) -> Unit
+) {
+    var checked by remember(requireUnlock) { mutableStateOf(requireUnlock) }
+
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = stringResource(R.string.require_unlock_label),
+                style = MaterialTheme.typography.bodyLarge
+            )
+            Text(
+                text = stringResource(R.string.require_unlock_description),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+
+        Switch(
+            checked = checked,
+            onCheckedChange = {
+                checked = it
+                onToggleRequireUnlock(it)
+            }
+        )
     }
 }
 
