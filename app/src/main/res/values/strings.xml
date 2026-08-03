@@ -3,13 +3,23 @@
     <string name="app_name">Calendar Tile</string>
     <string name="tile_label">Next Event</string>
 
-    <!-- MainActivity -->
+    <!-- MainActivity: permission screen -->
+    <string name="permission_headline">See your next event at a glance</string>
     <string name="permission_explanation">Calendar Tile needs access to your calendar to show your next event in the quick settings tile.</string>
     <string name="grant_permission">Grant Permission</string>
-    <string name="calendar_list_header">Calendars shown in the tile</string>
-    <string name="no_calendars_found">No calendars found on this device.</string>
+
+    <!-- MainActivity: add-tile onboarding screen -->
+    <string name="add_tile_headline">Add the Quick Settings tile</string>
+    <string name="add_tile_explanation_auto">Add Calendar Tile to your Quick Settings so your next event is always one swipe away.</string>
     <string name="add_tile_instructions">To show Calendar Tile in Quick Settings, swipe down twice from the top of your screen, tap the edit (pencil) icon, then drag Calendar Tile into your tiles.</string>
     <string name="add_tile_button">Add to Quick Settings</string>
+    <string name="skip_for_now">Skip for now</string>
+    <string name="continue_button">Continue</string>
+
+    <!-- MainActivity: calendar list screen -->
+    <string name="calendar_list_header">Calendars shown in the tile</string>
+    <string name="no_calendars_found">No calendars found on this device.</string>
+    <string name="add_tile_section_label">Quick Settings tile</string>
     <string name="require_unlock_label">Require unlock</string>
     <string name="require_unlock_description">Hide your next event\'s details until you unlock your phone.</string>
 

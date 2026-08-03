@@ -11,6 +11,7 @@ object CalendarPrefs {
     private const val PREFS_NAME = "calendar_tile_prefs"
     private const val KEY_IGNORED_IDS = "ignored_calendar_ids"
     private const val KEY_REQUIRE_UNLOCK = "require_unlock"
+    private const val KEY_TILE_ONBOARDING_COMPLETE = "tile_onboarding_complete"
 
     fun getIgnoredCalendarIds(context: Context): Set<Long> {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -39,5 +40,15 @@ object CalendarPrefs {
     fun setRequireUnlock(context: Context, enabled: Boolean) {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         prefs.edit().putBoolean(KEY_REQUIRE_UNLOCK, enabled).apply()
+    }
+
+    fun isTileOnboardingComplete(context: Context): Boolean {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        return prefs.getBoolean(KEY_TILE_ONBOARDING_COMPLETE, false)
+    }
+
+    fun setTileOnboardingComplete(context: Context, complete: Boolean) {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit().putBoolean(KEY_TILE_ONBOARDING_COMPLETE, complete).apply()
     }
 }

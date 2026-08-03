@@ -11,6 +11,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,6 +23,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -30,6 +32,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -54,7 +57,6 @@ class MainActivity : ComponentActivity() {
         permissionGrantedState.value = granted
         if (granted) {
             calendarsState.value = CalendarHelper.getCalendars(this)
-            requestAddTile()
         }
         requestTileUpdate()
     }
@@ -62,6 +64,7 @@ class MainActivity : ComponentActivity() {
     private val permissionGrantedState = mutableStateOf(false)
     private val calendarsState = mutableStateOf<List<CalendarInfo>>(emptyList())
     private val requireUnlockState = mutableStateOf(false)
+    private val tileOnboardingCompleteState = mutableStateOf(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +74,7 @@ class MainActivity : ComponentActivity() {
             calendarsState.value = CalendarHelper.getCalendars(this)
         }
         requireUnlockState.value = CalendarPrefs.isRequireUnlockEnabled(this)
+        tileOnboardingCompleteState.value = CalendarPrefs.isTileOnboardingComplete(this)
 
         setContent {
             CalendarTileTheme {
@@ -80,6 +84,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     CalendarTileApp(
                         permissionGranted = permissionGrantedState.value,
+                        tileOnboardingComplete = tileOnboardingCompleteState.value,
                         calendars = calendarsState.value,
                         ignoredIds = CalendarPrefs.getIgnoredCalendarIds(this),
                         requireUnlock = requireUnlockState.value,
@@ -94,7 +99,9 @@ class MainActivity : ComponentActivity() {
                             CalendarPrefs.setRequireUnlock(this, enabled)
                             requestTileUpdate()
                         },
-                        onAddTileClick = { requestAddTile() }
+                        onAddTileClick = { requestAddTile() },
+                        onAddTileOnboardingClick = { requestAddTile(onResult = ::completeTileOnboarding) },
+                        onSkipTileOnboarding = { completeTileOnboarding() }
                     )
                 }
             }
@@ -109,6 +116,12 @@ class MainActivity : ComponentActivity() {
             calendarsState.value = CalendarHelper.getCalendars(this)
         }
         requireUnlockState.value = CalendarPrefs.isRequireUnlockEnabled(this)
+        tileOnboardingCompleteState.value = CalendarPrefs.isTileOnboardingComplete(this)
+    }
+
+    private fun completeTileOnboarding() {
+        CalendarPrefs.setTileOnboardingComplete(this, true)
+        tileOnboardingCompleteState.value = true
     }
 
     private fun requestTileUpdate() {
@@ -118,16 +131,25 @@ class MainActivity : ComponentActivity() {
         )
     }
 
-    private fun requestAddTile() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
+    private fun requestAddTile(onResult: () -> Unit = {}) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            onResult()
+            return
+        }
 
-        val statusBarManager = getSystemService(StatusBarManager::class.java) ?: return
+        val statusBarManager = getSystemService(StatusBarManager::class.java)
+        if (statusBarManager == null) {
+            onResult()
+            return
+        }
         statusBarManager.requestAddTileService(
             ComponentName(this, CalendarTileService::class.java),
             getString(R.string.tile_label),
             Icon.createWithResource(this, R.drawable.ic_calendar),
             mainExecutor
-        ) { /* result ignored; system already no-ops if the tile is already added */ }
+        ) { /* result code ignored; system already no-ops if the tile is already added */
+            onResult()
+        }
     }
 }
 
@@ -135,13 +157,16 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun CalendarTileApp(
     permissionGranted: Boolean,
+    tileOnboardingComplete: Boolean,
     calendars: List<CalendarInfo>,
     ignoredIds: Set<Long>,
     requireUnlock: Boolean,
     onRequestPermission: () -> Unit,
     onToggleCalendar: (Long, Boolean) -> Unit,
     onToggleRequireUnlock: (Boolean) -> Unit,
-    onAddTileClick: () -> Unit
+    onAddTileClick: () -> Unit,
+    onAddTileOnboardingClick: () -> Unit,
+    onSkipTileOnboarding: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -150,56 +175,135 @@ fun CalendarTileApp(
             )
         }
     ) { padding ->
-        if (!permissionGranted) {
-            PermissionRequestScreen(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding),
-                onRequestPermission = onRequestPermission
-            )
-        } else {
-            CalendarListScreen(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding),
-                calendars = calendars,
-                ignoredIds = ignoredIds,
-                requireUnlock = requireUnlock,
-                onToggleCalendar = onToggleCalendar,
-                onToggleRequireUnlock = onToggleRequireUnlock,
-                onAddTileClick = onAddTileClick
+        when {
+            !permissionGranted -> {
+                OnboardingScreen(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding),
+                    iconRes = R.drawable.ic_calendar,
+                    headline = stringResource(R.string.permission_headline),
+                    body = stringResource(R.string.permission_explanation),
+                    primaryButtonLabel = stringResource(R.string.grant_permission),
+                    onPrimaryButtonClick = onRequestPermission
+                )
+            }
+
+            !tileOnboardingComplete -> {
+                AddTileScreen(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding),
+                    onAddTileClick = onAddTileOnboardingClick,
+                    onSkip = onSkipTileOnboarding
+                )
+            }
+
+            else -> {
+                CalendarListScreen(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding),
+                    calendars = calendars,
+                    ignoredIds = ignoredIds,
+                    requireUnlock = requireUnlock,
+                    onToggleCalendar = onToggleCalendar,
+                    onToggleRequireUnlock = onToggleRequireUnlock,
+                    onAddTileClick = onAddTileClick
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun OnboardingIcon(iconRes: Int, modifier: Modifier = Modifier) {
+    Surface(
+        modifier = modifier.size(96.dp),
+        shape = CircleShape,
+        color = MaterialTheme.colorScheme.primaryContainer
+    ) {
+        Box(contentAlignment = Alignment.Center) {
+            Icon(
+                painter = painterResource(id = iconRes),
+                contentDescription = null,
+                modifier = Modifier.size(48.dp),
+                tint = MaterialTheme.colorScheme.onPrimaryContainer
             )
         }
     }
 }
 
 @Composable
-fun PermissionRequestScreen(
+fun OnboardingScreen(
     modifier: Modifier = Modifier,
-    onRequestPermission: () -> Unit
+    iconRes: Int,
+    headline: String,
+    body: String,
+    primaryButtonLabel: String,
+    onPrimaryButtonClick: () -> Unit,
+    secondaryButtonLabel: String? = null,
+    onSecondaryButtonClick: (() -> Unit)? = null
 ) {
     Box(
-        modifier = modifier.padding(32.dp),
+        modifier = modifier.padding(24.dp),
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_calendar),
-                contentDescription = null,
-                modifier = Modifier.height(64.dp),
-                tint = MaterialTheme.colorScheme.primary
-            )
-            Spacer(modifier = Modifier.height(16.dp))
+            OnboardingIcon(iconRes = iconRes)
+            Spacer(modifier = Modifier.height(24.dp))
             Text(
-                text = stringResource(R.string.permission_explanation),
-                style = MaterialTheme.typography.bodyLarge,
+                text = headline,
+                style = MaterialTheme.typography.headlineSmall,
                 textAlign = TextAlign.Center
             )
-            Spacer(modifier = Modifier.height(24.dp))
-            Button(onClick = onRequestPermission) {
-                Text(stringResource(R.string.grant_permission))
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = body,
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center
+            )
+            Spacer(modifier = Modifier.height(32.dp))
+            Button(onClick = onPrimaryButtonClick) {
+                Text(primaryButtonLabel)
+            }
+            if (secondaryButtonLabel != null && onSecondaryButtonClick != null) {
+                Spacer(modifier = Modifier.height(8.dp))
+                TextButton(onClick = onSecondaryButtonClick) {
+                    Text(secondaryButtonLabel)
+                }
             }
         }
+    }
+}
+
+@Composable
+fun AddTileScreen(
+    modifier: Modifier = Modifier,
+    onAddTileClick: () -> Unit,
+    onSkip: () -> Unit
+) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        OnboardingScreen(
+            modifier = modifier,
+            iconRes = R.drawable.ic_widgets,
+            headline = stringResource(R.string.add_tile_headline),
+            body = stringResource(R.string.add_tile_explanation_auto),
+            primaryButtonLabel = stringResource(R.string.add_tile_button),
+            onPrimaryButtonClick = onAddTileClick,
+            secondaryButtonLabel = stringResource(R.string.skip_for_now),
+            onSecondaryButtonClick = onSkip
+        )
+    } else {
+        OnboardingScreen(
+            modifier = modifier,
+            iconRes = R.drawable.ic_widgets,
+            headline = stringResource(R.string.add_tile_headline),
+            body = stringResource(R.string.add_tile_instructions),
+            primaryButtonLabel = stringResource(R.string.continue_button),
+            onPrimaryButtonClick = onSkip
+        )
     }
 }
 
@@ -256,17 +360,30 @@ fun AddTileSection(
     modifier: Modifier = Modifier,
     onAddTileClick: () -> Unit
 ) {
-    Column(modifier = modifier.padding(16.dp)) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 12.dp)
+    ) {
+        Text(
+            text = stringResource(R.string.add_tile_section_label),
+            style = MaterialTheme.typography.bodyLarge
+        )
         Text(
             text = stringResource(R.string.add_tile_instructions),
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.bodySmall,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
-        Spacer(modifier = Modifier.height(12.dp))
-        Button(
-            onClick = onAddTileClick,
-            enabled = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
-        ) {
-            Text(stringResource(R.string.add_tile_button))
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                TextButton(onClick = onAddTileClick) {
+                    Text(stringResource(R.string.add_tile_button))
+                }
+            }
         }
     }
 }
