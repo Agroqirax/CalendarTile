@@ -3,13 +3,23 @@
     <string name="app_name">Tuile Calendrier</string>
     <string name="tile_label">Prochain événement</string>
 
-    <!-- MainActivity -->
+    <!-- MainActivity: permission screen -->
+    <string name="permission_headline">Voyez votre prochain événement en un coup d\'œil</string>
     <string name="permission_explanation">Tuile Calendrier a besoin d\'accéder à votre calendrier pour afficher votre prochain événement dans la tuile des réglages rapides.</string>
     <string name="grant_permission">Autoriser l\'accès</string>
-    <string name="calendar_list_header">Calendriers affichés dans la tuile</string>
-    <string name="no_calendars_found">Aucun calendrier trouvé sur cet appareil.</string>
+
+    <!-- MainActivity: add-tile onboarding screen -->
+    <string name="add_tile_headline">Ajouter la vignette des paramètres rapides</string>
+    <string name="add_tile_explanation_auto">Ajoutez Tuile Calendrier à vos paramètres rapides pour que votre prochain événement soit toujours à un glissement près.</string>
     <string name="add_tile_instructions">Pour afficher la vignette du calendrier dans les paramètres rapides, faites glisser votre doigt deux fois vers le bas depuis le haut de votre écran, appuyez sur l\'icône d\'édition (crayon), puis faites glisser la vignette du calendrier dans vos vignettes.</string>
     <string name="add_tile_button">Ajouter aux paramètres rapides</string>
+    <string name="skip_for_now">Plus tard</string>
+    <string name="continue_button">Continuer</string>
+
+    <!-- MainActivity: calendar list screen -->
+    <string name="calendar_list_header">Calendriers affichés dans la tuile</string>
+    <string name="no_calendars_found">Aucun calendrier trouvé sur cet appareil.</string>
+    <string name="add_tile_section_label">Vignette des paramètres rapides</string>
     <string name="require_unlock_label">Exiger le déverrouillage</string>
     <string name="require_unlock_description">Masquer les détails de votre prochain événement jusqu\'à ce que vous déverrouilliez votre téléphone.</string>
 

@@ -3,13 +3,23 @@
     <string name="app_name">Agenda Tegel</string>
     <string name="tile_label">Volgende afspraak</string>
 
-    <!-- MainActivity -->
+    <!-- MainActivity: permission screen -->
+    <string name="permission_headline">Zie je volgende afspraak in één oogopslag</string>
     <string name="permission_explanation">Agenda Tegel heeft toegang tot je agenda nodig om je volgende afspraak in de snelle instellingen te tonen.</string>
     <string name="grant_permission">Toestemming geven</string>
+
+    <!-- MainActivity: add-tile onboarding screen -->
+    <string name="add_tile_headline">Voeg de Snelle instellingen-tegel toe</string>
+    <string name="add_tile_explanation_auto">Voeg Agenda Tegel toe aan je Snelle instellingen, zodat je volgende afspraak altijd één veeg verwijderd is.</string>
+    <string name="add_tile_instructions">Om Agenda Tegel in Snelle instellingen weer te geven, veegt u twee keer omlaag vanaf de bovenkant van uw scherm, tikt u op het bewerkingspictogram (potlood) en sleept u vervolgens Agenda Tegel naar uw tegels.</string>
+    <string name="add_tile_button">Toevoegen aan Snelle instellingen</string>
+    <string name="skip_for_now">Later</string>
+    <string name="continue_button">Doorgaan</string>
+
+    <!-- MainActivity: calendar list screen -->
     <string name="calendar_list_header">Agenda\'s in de tegel</string>
     <string name="no_calendars_found">Geen agenda\'s gevonden op dit toestel.</string>
-    <string name="add_tile_instructions">Om Agendategel in Snelle instellingen weer te geven, veegt u twee keer omlaag vanaf de bovenkant van uw scherm, tikt u op het bewerkingspictogram (potlood) en sleept u vervolgens Agendategel naar uw tegels.</string>
-    <string name="add_tile_button">Toevoegen aan Snelle instellingen</string>
+    <string name="add_tile_section_label">Snelle instellingen-tegel</string>
     <string name="require_unlock_label">Ontgrendeling vereisen</string>
     <string name="require_unlock_description">Verberg de details van je volgende afspraak totdat je je telefoon ontgrendelt.</string>
 

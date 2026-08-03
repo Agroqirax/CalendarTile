@@ -3,14 +3,24 @@
     <string name="app_name">Mosaico de Calendario</string>
     <string name="tile_label">Próximo evento</string>
 
-    <!-- MainActivity -->
+    <!-- MainActivity: permission screen -->
+    <string name="permission_headline">Ve tu próximo evento de un vistazo</string>
     <string name="permission_explanation">Mosaico de Calendario necesita acceso a tu calendario para mostrar tu próximo evento en el mosaico de ajustes rápidos.</string>
     <string name="grant_permission">Conceder permiso</string>
+
+    <!-- MainActivity: add-tile onboarding screen -->
+    <string name="add_tile_headline">Agrega el mosaico de Configuración rápida</string>
+    <string name="add_tile_explanation_auto">Agrega Mosaico de Calendario a tu Configuración rápida para que tu próximo evento esté siempre a un deslizamiento de distancia.</string>
+    <string name="add_tile_instructions">Para mostrar el mosaico del calendario en Configuración rápida, deslícese hacia abajo dos veces desde la parte superior de la pantalla, toque el ícono de edición (lápiz) y luego arrastre el mosaico del calendario a sus mosaicos.</string>
+    <string name="add_tile_button">Agregar a Configuración rápida</string>
+    <string name="skip_for_now">Omitir por ahora</string>
+    <string name="continue_button">Continuar</string>
+
+    <!-- MainActivity: calendar list screen -->
     <string name="calendar_list_header">Calendarios mostrados en el mosaico</string>
     <string name="no_calendars_found">No se encontraron calendarios en este dispositivo.</string>
-    <string name="add_tile_instructions">Para mostrar el mosaico del calendario en Configuración rápida, deslícese hacia abajo dos veces desde la parte superior de la pantalla, toque el ícono de edición (lápiz) y luego arrastre el mosaico del calendario a sus mosaicos.</string>
-    <string name="add_tile_button">Agregar a configuración rápida</string>
-    <string name="require_unlock_label">Requerir desbloqueo</string>
+    <string name="add_tile_section_label">Mosaico de Configuración rápida</string>
+    <string name="require_unlock_label">Solicitar desbloqueo</string>
     <string name="require_unlock_description">Oculta los detalles de tu próximo evento hasta que desbloquees tu teléfono.</string>
 
     <!-- Tile -->

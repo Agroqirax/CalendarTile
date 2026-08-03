@@ -3,15 +3,30 @@
     <string name="app_name">Kalender-Kachel</string>
     <string name="tile_label">Nächster Termin</string>
 
-    <!-- MainActivity -->
-    <string name="permission_explanation">Kalender-Kachel benötigt Zugriff auf deinen Kalender, um deinen nächsten Termin in der Schnelleinstellungskachel anzuzeigen.</string>
+    <!-- MainActivity: permission screen -->
+    <string name="permission_headline">Sieh deinen nächsten Termin auf einen Blick</string>
+    <string name="permission_explanation">Kalender-Kachel benötigt Zugriff auf deinen Kalender, um
+        deinen nächsten Termin in der Schnelleinstellungskachel anzuzeigen.</string>
     <string name="grant_permission">Berechtigung erteilen</string>
+
+    <!-- MainActivity: add-tile onboarding screen -->
+    <string name="add_tile_headline">Schnelleinstellungskachel hinzufügen</string>
+    <string name="add_tile_explanation_auto">Füge Kalender-Kachel zu deinen Schnelleinstellungen
+        hinzu, damit dein nächster Termin immer nur einen Wisch entfernt ist.</string>
+    <string name="add_tile_instructions">Um die Kalenderkachel in den Schnelleinstellungen
+        anzuzeigen, wischen Sie zweimal vom oberen Bildschirmrand nach unten, tippen Sie auf das
+        Bearbeitungssymbol (Bleistift) und ziehen Sie dann die Kalenderkachel in Ihre Kacheln.</string>
+    <string name="add_tile_button">Zu den Schnelleinstellungen hinzufügen</string>
+    <string name="skip_for_now">Später</string>
+    <string name="continue_button">Weiter</string>
+
+    <!-- MainActivity: calendar list screen -->
     <string name="calendar_list_header">Kalender in der Kachel</string>
     <string name="no_calendars_found">Keine Kalender auf diesem Gerät gefunden.</string>
-    <string name="add_tile_instructions">Um die Kalenderkachel in den Schnelleinstellungen anzuzeigen, wischen Sie zweimal vom oberen Bildschirmrand nach unten, tippen Sie auf das Bearbeitungssymbol (Bleistift) und ziehen Sie dann die Kalenderkachel in Ihre Kacheln.</string>
-    <string name="add_tile_button">Zu den Schnelleinstellungen hinzufügen</string>
-    <string name="require_unlock_label">Entsperrung erforderlich</string>
-    <string name="require_unlock_description">Verbirgt die Details deines nächsten Termins, bis du dein Telefon entsperrst.</string>
+    <string name="add_tile_section_label">Schnelleinstellungskachel</string>
+    <string name="require_unlock_label">Entsperren erforderlich</string>
+    <string name="require_unlock_description">Verbirgt die Details deines nächsten Termins, bis du
+        dein Telefon entsperrst.</string>
 
     <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Tippen, um Berechtigung zu erteilen</string>

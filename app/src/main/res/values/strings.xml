@@ -10,7 +10,7 @@
 
     <!-- MainActivity: add-tile onboarding screen -->
     <string name="add_tile_headline">Add the Quick Settings tile</string>
-    <string name="add_tile_explanation_auto">Add Calendar Tile to your Quick Settings so your next event is always one swipe away.</string>
+    <string name="add_tile_explanation_auto">Add Calendar Tile to Quick Settings so your next event is always one swipe away.</string>
     <string name="add_tile_instructions">To show Calendar Tile in Quick Settings, swipe down twice from the top of your screen, tap the edit (pencil) icon, then drag Calendar Tile into your tiles.</string>
     <string name="add_tile_button">Add to Quick Settings</string>
     <string name="skip_for_now">Skip for now</string>
