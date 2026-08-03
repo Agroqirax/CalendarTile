@@ -11,6 +11,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -44,6 +45,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -399,6 +401,14 @@ fun RequireUnlockSection(
     Row(
         modifier = modifier
             .fillMaxWidth()
+            .toggleable(
+                value = checked,
+                role = Role.Switch,
+                onValueChange = {
+                    checked = it
+                    onToggleRequireUnlock(it)
+                }
+            )
             .padding(horizontal = 16.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -416,10 +426,7 @@ fun RequireUnlockSection(
 
         Switch(
             checked = checked,
-            onCheckedChange = {
-                checked = it
-                onToggleRequireUnlock(it)
-            }
+            onCheckedChange = null
         )
     }
 }
@@ -435,6 +442,14 @@ fun CalendarRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .toggleable(
+                value = checked,
+                role = Role.Switch,
+                onValueChange = {
+                    checked = it
+                    onToggle(it)
+                }
+            )
             .padding(horizontal = 16.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -464,10 +479,7 @@ fun CalendarRow(
 
         Switch(
             checked = checked,
-            onCheckedChange = {
-                checked = it
-                onToggle(it)
-            }
+            onCheckedChange = null
         )
     }
 }
