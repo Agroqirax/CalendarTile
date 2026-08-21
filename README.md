@@ -16,6 +16,7 @@ An Android Quick Settings tile that shows your next upcoming calendar event, wit
 - **7-day lookahead** — surfaces the soonest event within the next week, preferring events happening right now over future ones.
 - **Smart filtering** — automatically skips declined and cancelled events.
 - **Per-calendar toggles** — the app screen lists every calendar on the device (across all accounts) with a switch to include/exclude it from the tile.
+- **Require unlock** — optionally hide your next event's details until the phone is unlocked.
 - **Localized** — available in English, Dutch, German, French, Spanish, Italian, and Portuguese.
 
 ## Screenshots
