@@ -12,6 +12,8 @@ object CalendarPrefs {
     private const val KEY_IGNORED_IDS = "ignored_calendar_ids"
     private const val KEY_REQUIRE_UNLOCK = "require_unlock"
     private const val KEY_TILE_ONBOARDING_COMPLETE = "tile_onboarding_complete"
+    private const val KEY_TILE_ICON_STYLE = "tile_icon_style"
+    private const val KEY_CUSTOM_ICON_RULES = "custom_icon_rules"
 
     fun getIgnoredCalendarIds(context: Context): Set<Long> {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -50,5 +52,25 @@ object CalendarPrefs {
     fun setTileOnboardingComplete(context: Context, complete: Boolean) {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         prefs.edit().putBoolean(KEY_TILE_ONBOARDING_COMPLETE, complete).apply()
+    }
+
+    fun getTileIconStyle(context: Context): TileIconStyle {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        return TileIconStyle.fromKey(prefs.getString(KEY_TILE_ICON_STYLE, null))
+    }
+
+    fun setTileIconStyle(context: Context, style: TileIconStyle) {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit().putString(KEY_TILE_ICON_STYLE, style.name).apply()
+    }
+
+    fun getCustomIconRules(context: Context): List<CustomIconRule> {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        return CustomIconRules.decode(prefs.getString(KEY_CUSTOM_ICON_RULES, null))
+    }
+
+    fun setCustomIconRules(context: Context, rules: List<CustomIconRule>) {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit().putString(KEY_CUSTOM_ICON_RULES, CustomIconRules.encode(rules)).apply()
     }
 }

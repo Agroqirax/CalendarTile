@@ -22,6 +22,35 @@
     <string name="add_tile_section_label">Riquadro Impostazioni rapide</string>
     <string name="require_unlock_label">Richiedi sblocco</string>
     <string name="require_unlock_description">Nascondi i dettagli del tuo prossimo evento finché non sblocchi il telefono.</string>
+    <string name="tile_icon_label">Icona del riquadro</string>
+    <string name="tile_icon_style_plain">Calendario semplice</string>
+    <string name="tile_icon_style_today">Data di oggi</string>
+    <string name="tile_icon_style_event_date">Data dell\'evento</string>
+    <string name="tile_icon_style_smart">Icona corrispondente</string>
+    <string name="tile_icon_style_beta_badge">Beta</string>
+    <string name="custom_icons_label">Icone personalizzate</string>
+    <string name="custom_icons_description">Associa le tue parole chiave alle icone</string>
+    <string name="custom_icons_empty">Ancora nessuna associazione. Aggiungine una per dare ai tuoi eventi un\'icona adatta.</string>
+    <string name="custom_icons_add">Aggiungi associazione</string>
+    <string name="custom_icons_keyword">Parola chiave</string>
+    <string name="custom_icons_keyword_hint">es. pranzo di squadra</string>
+    <string name="custom_icons_expression">Espressione</string>
+    <string name="custom_icons_expression_hint">es. ^Squadra.*(pranzo|cena)$</string>
+    <string name="custom_icons_delete">Elimina associazione</string>
+    <string name="custom_icons_edit">Modifica associazione</string>
+    <string name="custom_icons_mode_words">Parole</string>
+    <string name="custom_icons_mode_regex">Regex</string>
+    <string name="custom_icons_mode_words_help">Corrisponde se ogni parola compare nel titolo o nel luogo, in qualsiasi ordine.</string>
+    <string name="custom_icons_mode_regex_help">Un\'espressione regolare, che corrisponde ovunque nel titolo o nel luogo se non la ancori.</string>
+    <string name="custom_icons_mode_exact">Esatto</string>
+    <string name="custom_icons_mode_normalized">Normalizzato</string>
+    <string name="custom_icons_exact_on_help">Maiuscole e accenti devono corrispondere esattamente.</string>
+    <string name="custom_icons_exact_off_help">Ignora maiuscole e accenti.</string>
+    <string name="custom_icons_invalid_regex">Modello non valido</string>
+    <string name="custom_icons_test">Prova con</string>
+    <string name="custom_icons_test_match">Corrisponde</string>
+    <string name="custom_icons_test_no_match">Nessuna corrispondenza</string>
+    <string name="navigate_back">Indietro</string>
 
     <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Tocca per concedere il permesso</string>

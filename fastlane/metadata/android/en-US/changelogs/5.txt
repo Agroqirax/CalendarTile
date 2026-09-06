@@ -1,0 +1,5 @@
+Choose what the tile icon shows: a plain calendar, today's date, the event's date, or an icon matching the event
+Added event icons, matched on event title and location across all supported languages
+Map your own keywords to icons under Custom icons, by words or by regular expression
+Fixed all-day events showing the previous day's date in time zones west of UTC
+Fixed the onboarding illustration showing the wrong icon

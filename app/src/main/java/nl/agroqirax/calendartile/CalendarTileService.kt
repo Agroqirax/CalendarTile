@@ -91,10 +91,11 @@ class CalendarTileService : TileService() {
     fun updateTile() {
         val tile = qsTile ?: return
 
-        tile.icon = Icon.createWithResource(this, R.drawable.ic_calendar)
+        val iconStyle = CalendarPrefs.getTileIconStyle(this)
 
         if (!CalendarHelper.hasPermission(this)) {
             currentEvent = null
+            tile.icon = iconFor(iconStyle, event = null)
             tile.label = getString(R.string.app_name)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 tile.subtitle = getString(R.string.tile_tap_to_grant_permission)
@@ -111,18 +112,23 @@ class CalendarTileService : TileService() {
         val requireUnlock = CalendarPrefs.isRequireUnlockEnabled(this) && isSecure && isLocked
 
         if (requireUnlock) {
+            // Pass no event, so neither its date nor its type can be read off the
+            // icon while the phone is locked
+            tile.icon = iconFor(iconStyle, event = null)
             tile.label = getString(R.string.tile_require_unlock_message)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 tile.subtitle = null
             }
             tile.state = Tile.STATE_INACTIVE
         } else if (nextEvent == null) {
+            tile.icon = iconFor(iconStyle, event = null)
             tile.label = getString(R.string.tile_no_upcoming_events)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 tile.subtitle = null
             }
             tile.state = Tile.STATE_INACTIVE
         } else {
+            tile.icon = iconFor(iconStyle, nextEvent)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 tile.label = nextEvent.title
                 tile.subtitle = nextEvent.timeLabel
@@ -133,5 +139,21 @@ class CalendarTileService : TileService() {
         }
 
         tile.updateTile()
+    }
+
+    /**
+     * A null [event] means nothing may be revealed about the next event.
+     * The event-derived styles fall back to today's date in that case.
+     */
+    private fun iconFor(style: TileIconStyle, event: NextEvent?): Icon {
+        val spec = TileIconResolver.resolve(
+            style = style,
+            event = event,
+            customRules = CalendarPrefs.getCustomIconRules(this)
+        )
+        return when (spec) {
+            is TileIconSpec.Glyph -> Icon.createWithResource(this, spec.resId)
+            is TileIconSpec.Day -> TileIconRenderer.renderDayIcon(this, spec.dayOfMonth)
+        }
     }
 }

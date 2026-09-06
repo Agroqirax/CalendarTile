@@ -22,6 +22,35 @@
     <string name="add_tile_section_label">Quick Settings tile</string>
     <string name="require_unlock_label">Require unlock</string>
     <string name="require_unlock_description">Hide your next event\'s details until you unlock your phone.</string>
+    <string name="tile_icon_label">Tile icon</string>
+    <string name="tile_icon_style_plain">Plain calendar</string>
+    <string name="tile_icon_style_today">Today\'s date</string>
+    <string name="tile_icon_style_event_date">Event date</string>
+    <string name="tile_icon_style_smart">Matching icon</string>
+    <string name="tile_icon_style_beta_badge">Beta</string>
+    <string name="custom_icons_label">Custom icons</string>
+    <string name="custom_icons_description">Match your own keywords to icons</string>
+    <string name="custom_icons_empty">No custom mappings yet. Add one to give your own events a matching icon.</string>
+    <string name="custom_icons_add">Add mapping</string>
+    <string name="custom_icons_keyword">Keyword</string>
+    <string name="custom_icons_keyword_hint">e.g. team lunch</string>
+    <string name="custom_icons_expression">Expression</string>
+    <string name="custom_icons_expression_hint">e.g. ^Team.*(lunch|dinner)$</string>
+    <string name="custom_icons_delete">Delete mapping</string>
+    <string name="custom_icons_edit">Edit mapping</string>
+    <string name="custom_icons_mode_words">Words</string>
+    <string name="custom_icons_mode_regex">Regex</string>
+    <string name="custom_icons_mode_words_help">Matches when every word appears in the title or location, in any order.</string>
+    <string name="custom_icons_mode_regex_help">A regular expression, matched anywhere in the title or location unless you anchor it.</string>
+    <string name="custom_icons_mode_exact">Exact</string>
+    <string name="custom_icons_mode_normalized">Normalized</string>
+    <string name="custom_icons_exact_on_help">Case and accents must match exactly.</string>
+    <string name="custom_icons_exact_off_help">Ignores case and accents.</string>
+    <string name="custom_icons_invalid_regex">Invalid pattern</string>
+    <string name="custom_icons_test">Test against</string>
+    <string name="custom_icons_test_match">Matches</string>
+    <string name="custom_icons_test_no_match">No match</string>
+    <string name="navigate_back">Back</string>
 
     <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Tap to grant permission</string>

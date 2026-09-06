@@ -11,7 +11,7 @@
     <!-- MainActivity: add-tile onboarding screen -->
     <string name="add_tile_headline">Voeg de Snelle instellingen-tegel toe</string>
     <string name="add_tile_explanation_auto">Voeg Agenda Tegel toe aan je Snelle instellingen, zodat je volgende afspraak altijd één veeg verwijderd is.</string>
-    <string name="add_tile_instructions">Om Agenda Tegel in Snelle instellingen weer te geven, veegt u twee keer omlaag vanaf de bovenkant van uw scherm, tikt u op het bewerkingspictogram (potlood) en sleept u vervolgens Agenda Tegel naar uw tegels.</string>
+    <string name="add_tile_instructions">Om Agenda Tegel in Snelle instellingen weer te geven, veeg je twee keer omlaag vanaf de bovenkant van je scherm, tik je op het bewerkingspictogram (potlood) en sleep je vervolgens Agenda Tegel naar je tegels.</string>
     <string name="add_tile_button">Toevoegen aan Snelle instellingen</string>
     <string name="skip_for_now">Later</string>
     <string name="continue_button">Doorgaan</string>
@@ -22,6 +22,35 @@
     <string name="add_tile_section_label">Snelle instellingen-tegel</string>
     <string name="require_unlock_label">Ontgrendeling vereisen</string>
     <string name="require_unlock_description">Verberg de details van je volgende afspraak totdat je je telefoon ontgrendelt.</string>
+    <string name="tile_icon_label">Tegelpictogram</string>
+    <string name="tile_icon_style_plain">Gewone agenda</string>
+    <string name="tile_icon_style_today">Datum van vandaag</string>
+    <string name="tile_icon_style_event_date">Afspraakdatum</string>
+    <string name="tile_icon_style_smart">Passend pictogram</string>
+    <string name="tile_icon_style_beta_badge">Bèta</string>
+    <string name="custom_icons_label">Eigen pictogrammen</string>
+    <string name="custom_icons_description">Koppel je eigen trefwoorden aan pictogrammen</string>
+    <string name="custom_icons_empty">Nog geen eigen koppelingen. Voeg er een toe om je eigen afspraken een passend pictogram te geven.</string>
+    <string name="custom_icons_add">Koppeling toevoegen</string>
+    <string name="custom_icons_keyword">Trefwoord</string>
+    <string name="custom_icons_keyword_hint">bijv. teamlunch</string>
+    <string name="custom_icons_expression">Expressie</string>
+    <string name="custom_icons_expression_hint">bijv. ^Team.*(lunch|diner)$</string>
+    <string name="custom_icons_delete">Koppeling verwijderen</string>
+    <string name="custom_icons_edit">Koppeling bewerken</string>
+    <string name="custom_icons_mode_words">Woorden</string>
+    <string name="custom_icons_mode_regex">Regex</string>
+    <string name="custom_icons_mode_words_help">Komt overeen als elk woord in de titel of locatie voorkomt, in willekeurige volgorde.</string>
+    <string name="custom_icons_mode_regex_help">Een reguliere expressie, die overal in de titel of locatie kan voorkomen tenzij je het verankert.</string>
+    <string name="custom_icons_mode_exact">Exact</string>
+    <string name="custom_icons_mode_normalized">Genormaliseerd</string>
+    <string name="custom_icons_exact_on_help">Hoofdletters en accenten moeten exact kloppen.</string>
+    <string name="custom_icons_exact_off_help">Negeert hoofdletters en accenten.</string>
+    <string name="custom_icons_invalid_regex">Ongeldig patroon</string>
+    <string name="custom_icons_test">Testen met</string>
+    <string name="custom_icons_test_match">Komt overeen</string>
+    <string name="custom_icons_test_no_match">Geen overeenkomst</string>
+    <string name="navigate_back">Terug</string>
 
     <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Tik om toestemming te geven</string>

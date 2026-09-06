@@ -16,6 +16,8 @@ An Android Quick Settings tile that shows your next upcoming calendar event, wit
 - **7-day lookahead** — surfaces the soonest event within the next week, preferring events happening right now over future ones.
 - **Smart filtering** — automatically skips declined and cancelled events.
 - **Per-calendar toggles** — the app screen lists every calendar on the device (across all accounts) with a switch to include/exclude it from the tile.
+- **Choosable tile icon** — a plain calendar, the next event’s date, or an icon matching the event.
+- **Custom icon mappings** — map your own keywords or regex to any of the icons.
 - **Require unlock** — optionally hide your next event's details until the phone is unlocked.
 - **Localized** — available in English, Dutch, German, French, Spanish, Italian, and Portuguese.
 
@@ -50,13 +52,6 @@ This is a standard Gradle-based Android project.
 ```
 
 Open the project in Android Studio to build, run, or debug on a device/emulator.
-
-## Technical details
-
-- `CalendarTileService` implements Android's `TileService` API to render the tile and refresh it whenever the Quick Settings panel is opened.
-- `CalendarHelper` queries `CalendarContract.Instances` for the next non-declined, non-cancelled event within a 7-day window, and formats a time label such as "Today", "Tomorrow", or a specific date/time range.
-- `CalendarPrefs` persists which calendar IDs are ignored, using `SharedPreferences`.
-- `MainActivity` (built with Jetpack Compose) requests the `READ_CALENDAR` runtime permission and lets you toggle individual calendars on or off.
 
 ## License
 

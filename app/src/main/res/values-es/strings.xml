@@ -11,7 +11,7 @@
     <!-- MainActivity: add-tile onboarding screen -->
     <string name="add_tile_headline">Agrega el mosaico de Configuración rápida</string>
     <string name="add_tile_explanation_auto">Agrega Mosaico de Calendario a tu Configuración rápida para que tu próximo evento esté siempre a un deslizamiento de distancia.</string>
-    <string name="add_tile_instructions">Para mostrar el mosaico del calendario en Configuración rápida, deslícese hacia abajo dos veces desde la parte superior de la pantalla, toque el ícono de edición (lápiz) y luego arrastre el mosaico del calendario a sus mosaicos.</string>
+    <string name="add_tile_instructions">Para mostrar el mosaico del calendario en Configuración rápida, desliza hacia abajo dos veces desde la parte superior de la pantalla, toca el ícono de edición (lápiz) y luego arrastra el mosaico del calendario a tus mosaicos.</string>
     <string name="add_tile_button">Agregar a Configuración rápida</string>
     <string name="skip_for_now">Omitir por ahora</string>
     <string name="continue_button">Continuar</string>
@@ -22,6 +22,35 @@
     <string name="add_tile_section_label">Mosaico de Configuración rápida</string>
     <string name="require_unlock_label">Solicitar desbloqueo</string>
     <string name="require_unlock_description">Oculta los detalles de tu próximo evento hasta que desbloquees tu teléfono.</string>
+    <string name="tile_icon_label">Icono del mosaico</string>
+    <string name="tile_icon_style_plain">Calendario simple</string>
+    <string name="tile_icon_style_today">Fecha de hoy</string>
+    <string name="tile_icon_style_event_date">Fecha del evento</string>
+    <string name="tile_icon_style_smart">Icono correspondiente</string>
+    <string name="tile_icon_style_beta_badge">Beta</string>
+    <string name="custom_icons_label">Iconos personalizados</string>
+    <string name="custom_icons_description">Asocia tus propias palabras clave a iconos</string>
+    <string name="custom_icons_empty">Aún no hay asociaciones. Añade una para dar a tus eventos un icono adecuado.</string>
+    <string name="custom_icons_add">Añadir asociación</string>
+    <string name="custom_icons_keyword">Palabra clave</string>
+    <string name="custom_icons_keyword_hint">p. ej. almuerzo de equipo</string>
+    <string name="custom_icons_expression">Expresión</string>
+    <string name="custom_icons_expression_hint">p. ej. ^Equipo.*(almuerzo|cena)$</string>
+    <string name="custom_icons_delete">Eliminar asociación</string>
+    <string name="custom_icons_edit">Editar asociación</string>
+    <string name="custom_icons_mode_words">Palabras</string>
+    <string name="custom_icons_mode_regex">Regex</string>
+    <string name="custom_icons_mode_words_help">Coincide si aparece cada palabra en el título o la ubicación, en cualquier orden.</string>
+    <string name="custom_icons_mode_regex_help">Una expresión regular, que coincide en cualquier parte del título o la ubicación salvo que la ancles.</string>
+    <string name="custom_icons_mode_exact">Exacto</string>
+    <string name="custom_icons_mode_normalized">Normalizado</string>
+    <string name="custom_icons_exact_on_help">Las mayúsculas y los acentos deben coincidir exactamente.</string>
+    <string name="custom_icons_exact_off_help">Ignora mayúsculas y acentos.</string>
+    <string name="custom_icons_invalid_regex">Patrón no válido</string>
+    <string name="custom_icons_test">Probar con</string>
+    <string name="custom_icons_test_match">Coincide</string>
+    <string name="custom_icons_test_no_match">Sin coincidencia</string>
+    <string name="navigate_back">Atrás</string>
 
     <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Toca para conceder permiso</string>

@@ -11,7 +11,7 @@
     <!-- MainActivity: add-tile onboarding screen -->
     <string name="add_tile_headline">Adicionar o bloco de configurações rápidas</string>
     <string name="add_tile_explanation_auto">Adicione o Bloco de Calendário às suas configurações rápidas para que o seu próximo evento esteja sempre a um deslize de distância.</string>
-    <string name="add_tile_instructions">Para mostrar o bloco de calendário nas configurações rápidas, deslize de cima para baixo duas vezes na tela, toque no ícone de edição (lápis) e arraste o bloco de calendário para seus blocos.</string>
+    <string name="add_tile_instructions">Para mostrar o bloco de calendário nas configurações rápidas, deslize de cima para baixo duas vezes no ecrã, toque no ícone de edição (lápis) e arraste o bloco de calendário para seus blocos.</string>
     <string name="add_tile_button">Adicionar às configurações rápidas</string>
     <string name="skip_for_now">Agora não</string>
     <string name="continue_button">Continuar</string>
@@ -22,6 +22,35 @@
     <string name="add_tile_section_label">Bloco de configurações rápidas</string>
     <string name="require_unlock_label">Exigir desbloqueio</string>
     <string name="require_unlock_description">Ocultar os detalhes do seu próximo evento até desbloquear o telefone.</string>
+    <string name="tile_icon_label">Ícone do bloco</string>
+    <string name="tile_icon_style_plain">Calendário simples</string>
+    <string name="tile_icon_style_today">Data de hoje</string>
+    <string name="tile_icon_style_event_date">Data do evento</string>
+    <string name="tile_icon_style_smart">Ícone correspondente</string>
+    <string name="tile_icon_style_beta_badge">Beta</string>
+    <string name="custom_icons_label">Ícones personalizados</string>
+    <string name="custom_icons_description">Associe as suas palavras-chave a ícones</string>
+    <string name="custom_icons_empty">Ainda não há associações. Adicione uma para dar aos seus eventos um ícone adequado.</string>
+    <string name="custom_icons_add">Adicionar associação</string>
+    <string name="custom_icons_keyword">Palavra-chave</string>
+    <string name="custom_icons_keyword_hint">ex. almoço de equipa</string>
+    <string name="custom_icons_expression">Expressão</string>
+    <string name="custom_icons_expression_hint">ex. ^Equipa.*(almoço|jantar)$</string>
+    <string name="custom_icons_delete">Eliminar associação</string>
+    <string name="custom_icons_edit">Editar associação</string>
+    <string name="custom_icons_mode_words">Palavras</string>
+    <string name="custom_icons_mode_regex">Regex</string>
+    <string name="custom_icons_mode_words_help">Corresponde se cada palavra aparecer no título ou no local, em qualquer ordem.</string>
+    <string name="custom_icons_mode_regex_help">Uma expressão regular, que corresponde em qualquer parte do título ou do local a menos que a ancore.</string>
+    <string name="custom_icons_mode_exact">Exato</string>
+    <string name="custom_icons_mode_normalized">Normalizado</string>
+    <string name="custom_icons_exact_on_help">Maiúsculas e acentos têm de corresponder exatamente.</string>
+    <string name="custom_icons_exact_off_help">Ignora maiúsculas e acentos.</string>
+    <string name="custom_icons_invalid_regex">Padrão inválido</string>
+    <string name="custom_icons_test">Testar com</string>
+    <string name="custom_icons_test_match">Corresponde</string>
+    <string name="custom_icons_test_no_match">Sem correspondência</string>
+    <string name="navigate_back">Voltar</string>
 
     <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Toque para conceder permissão</string>

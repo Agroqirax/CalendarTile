@@ -14,8 +14,8 @@
     <string name="add_tile_explanation_auto">Füge Kalender-Kachel zu deinen Schnelleinstellungen
         hinzu, damit dein nächster Termin immer nur einen Wisch entfernt ist.</string>
     <string name="add_tile_instructions">Um die Kalenderkachel in den Schnelleinstellungen
-        anzuzeigen, wischen Sie zweimal vom oberen Bildschirmrand nach unten, tippen Sie auf das
-        Bearbeitungssymbol (Bleistift) und ziehen Sie dann die Kalenderkachel in Ihre Kacheln.</string>
+        anzuzeigen, wische zweimal vom oberen Bildschirmrand nach unten, tippe auf das
+        Bearbeitungssymbol (Bleistift) und ziehe dann die Kalenderkachel in deine Kacheln.</string>
     <string name="add_tile_button">Zu den Schnelleinstellungen hinzufügen</string>
     <string name="skip_for_now">Später</string>
     <string name="continue_button">Weiter</string>
@@ -27,6 +27,35 @@
     <string name="require_unlock_label">Entsperren erforderlich</string>
     <string name="require_unlock_description">Verbirgt die Details deines nächsten Termins, bis du
         dein Telefon entsperrst.</string>
+    <string name="tile_icon_label">Kachelsymbol</string>
+    <string name="tile_icon_style_plain">Einfacher Kalender</string>
+    <string name="tile_icon_style_today">Heutiges Datum</string>
+    <string name="tile_icon_style_event_date">Datum des Termins</string>
+    <string name="tile_icon_style_smart">Passendes Symbol</string>
+    <string name="tile_icon_style_beta_badge">Beta</string>
+    <string name="custom_icons_label">Eigene Symbole</string>
+    <string name="custom_icons_description">Eigene Stichwörter mit Symbolen verknüpfen</string>
+    <string name="custom_icons_empty">Noch keine eigenen Verknüpfungen. Füge eine hinzu, um deinen Terminen ein passendes Symbol zu geben.</string>
+    <string name="custom_icons_add">Verknüpfung hinzufügen</string>
+    <string name="custom_icons_keyword">Stichwort</string>
+    <string name="custom_icons_keyword_hint">z. B. Team-Mittagessen</string>
+    <string name="custom_icons_expression">Ausdruck</string>
+    <string name="custom_icons_expression_hint">z. B. ^Team.*(Mittagessen|Abendessen)$</string>
+    <string name="custom_icons_delete">Verknüpfung löschen</string>
+    <string name="custom_icons_edit">Verknüpfung bearbeiten</string>
+    <string name="custom_icons_mode_words">Wörter</string>
+    <string name="custom_icons_mode_regex">Regex</string>
+    <string name="custom_icons_mode_words_help">Trifft zu, wenn jedes Wort im Titel oder Ort vorkommt, in beliebiger Reihenfolge.</string>
+    <string name="custom_icons_mode_regex_help">Ein regulärer Ausdruck, der überall im Titel oder Ort zutrifft, sofern nicht verankert.</string>
+    <string name="custom_icons_mode_exact">Exakt</string>
+    <string name="custom_icons_mode_normalized">Normalisiert</string>
+    <string name="custom_icons_exact_on_help">Groß-/Kleinschreibung und Akzente müssen genau übereinstimmen.</string>
+    <string name="custom_icons_exact_off_help">Ignoriert Groß-/Kleinschreibung und Akzente.</string>
+    <string name="custom_icons_invalid_regex">Ungültiges Muster</string>
+    <string name="custom_icons_test">Testen mit</string>
+    <string name="custom_icons_test_match">Trifft zu</string>
+    <string name="custom_icons_test_no_match">Keine Übereinstimmung</string>
+    <string name="navigate_back">Zurück</string>
 
     <!-- Tile -->
     <string name="tile_tap_to_grant_permission">Tippen, um Berechtigung zu erteilen</string>
