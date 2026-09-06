@@ -26,6 +26,7 @@
     <string name="tile_icon_style_plain">Calendario simple</string>
     <string name="tile_icon_style_today">Fecha de hoy</string>
     <string name="tile_icon_style_event_date">Fecha del evento</string>
+    <string name="tile_icon_style_next_event_weekday">Día de la semana del evento</string>
     <string name="tile_icon_style_smart">Icono correspondiente</string>
     <string name="tile_icon_style_beta_badge">Beta</string>
     <string name="custom_icons_label">Iconos personalizados</string>
@@ -63,4 +64,15 @@
     <string name="event_no_title">(Sin título)</string>
     <string name="day_today">Hoy</string>
     <string name="day_tomorrow">Mañana</string>
+
+    <!-- TileIconRenderer: NEXT_EVENT_WEEKDAY icon, Monday-first -->
+    <string-array name="weekday_abbrev">
+        <item>Lu</item>
+        <item>Ma</item>
+        <item>Mi</item>
+        <item>Ju</item>
+        <item>Vi</item>
+        <item>Sá</item>
+        <item>Do</item>
+    </string-array>
 </resources>

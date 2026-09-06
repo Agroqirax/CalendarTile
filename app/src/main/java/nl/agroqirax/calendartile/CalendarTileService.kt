@@ -154,6 +154,7 @@ class CalendarTileService : TileService() {
         return when (spec) {
             is TileIconSpec.Glyph -> Icon.createWithResource(this, spec.resId)
             is TileIconSpec.Day -> TileIconRenderer.renderDayIcon(this, spec.dayOfMonth)
+            is TileIconSpec.Weekday -> TileIconRenderer.renderWeekdayIcon(this, spec.dayOfWeek)
         }
     }
 }

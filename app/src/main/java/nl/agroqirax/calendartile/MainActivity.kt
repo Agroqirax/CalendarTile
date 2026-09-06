@@ -811,6 +811,18 @@ private fun TileIconPreview(
                 tint = tint
             )
         }
+
+        is TileIconSpec.Weekday -> {
+            val bitmap = remember(spec.dayOfWeek) {
+                TileIconRenderer.renderWeekdayBitmap(context, spec.dayOfWeek).asImageBitmap()
+            }
+            Icon(
+                bitmap = bitmap,
+                contentDescription = null,
+                modifier = iconModifier,
+                tint = tint
+            )
+        }
     }
 }
 

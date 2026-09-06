@@ -26,6 +26,7 @@
     <string name="tile_icon_style_plain">Plain calendar</string>
     <string name="tile_icon_style_today">Today\'s date</string>
     <string name="tile_icon_style_event_date">Event date</string>
+    <string name="tile_icon_style_next_event_weekday">Event weekday</string>
     <string name="tile_icon_style_smart">Matching icon</string>
     <string name="tile_icon_style_beta_badge">Beta</string>
     <string name="custom_icons_label">Custom icons</string>
@@ -63,4 +64,15 @@
     <string name="event_no_title">(No title)</string>
     <string name="day_today">Today</string>
     <string name="day_tomorrow">Tomorrow</string>
+
+    <!-- TileIconRenderer: NEXT_EVENT_WEEKDAY icon, Monday-first -->
+    <string-array name="weekday_abbrev">
+        <item>Mo</item>
+        <item>Tu</item>
+        <item>We</item>
+        <item>Th</item>
+        <item>Fr</item>
+        <item>Sa</item>
+        <item>Su</item>
+    </string-array>
 </resources>

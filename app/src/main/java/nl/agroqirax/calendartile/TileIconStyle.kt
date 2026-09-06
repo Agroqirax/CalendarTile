@@ -24,6 +24,12 @@ enum class TileIconStyle(@get:StringRes val labelRes: Int) {
     EVENT_DATE(R.string.tile_icon_style_event_date),
 
     /**
+     * Calendar frame with the next event's weekday abbreviation inside, localized
+     * to the device's language (e.g. "Mo" in English, "Ma" in Dutch).
+     */
+    NEXT_EVENT_WEEKDAY(R.string.tile_icon_style_next_event_weekday),
+
+    /**
      * A glyph matched to the event itself, e.g. a plane for a flight. Falls back
      * to [EVENT_DATE] when nothing matches, which is the common case.
      */

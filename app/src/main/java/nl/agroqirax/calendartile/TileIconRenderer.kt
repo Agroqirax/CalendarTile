@@ -10,12 +10,13 @@ import android.graphics.Typeface
 import android.graphics.drawable.Icon
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.createBitmap
+import java.util.Calendar
 import kotlin.math.min
 import kotlin.math.roundToInt
 
 /**
- * Draws a calendar frame with a day of the month inside it, for the
- * [TileIconStyle.TODAY] and [TileIconStyle.EVENT_DATE] tile icons.
+ * Draws a calendar frame with text inside it, for the [TileIconStyle.TODAY],
+ * [TileIconStyle.EVENT_DATE], and [TileIconStyle.NEXT_EVENT_WEEKDAY] tile icons.
  */
 object TileIconRenderer {
 
@@ -45,6 +46,11 @@ object TileIconRenderer {
      */
     private val cache = HashMap<CacheKey, Bitmap>()
 
+    private data class WeekdayCacheKey(val size: Int, val dayOfWeek: Int)
+
+    /** Same reasoning as [cache], for the weekday variant. */
+    private val weekdayCache = HashMap<WeekdayCacheKey, Bitmap>()
+
     /**
      * Renders [dayOfMonth] inside a calendar frame.
      *
@@ -61,7 +67,7 @@ object TileIconRenderer {
         val canvas = Canvas(bitmap)
 
         drawFrame(context, canvas, size)
-        drawDay(canvas, size, dayOfMonth)
+        drawCentered(canvas, size, dayOfMonth.toString())
 
         cache[key] = bitmap
         return bitmap
@@ -69,6 +75,40 @@ object TileIconRenderer {
 
     fun renderDayIcon(context: Context, dayOfMonth: Int): Icon =
         Icon.createWithBitmap(renderDayBitmap(context, dayOfMonth))
+
+    /**
+     * Renders [dayOfWeek]'s localized abbreviation (from [R.array.weekday_abbrev])
+     * inside a calendar frame. [dayOfWeek] follows [Calendar.DAY_OF_WEEK] convention:
+     * [Calendar.SUNDAY] (1) through [Calendar.SATURDAY] (7). Cached for the same
+     * reason as [renderDayBitmap].
+     */
+    @Synchronized
+    fun renderWeekdayBitmap(context: Context, dayOfWeek: Int): Bitmap {
+        val size = iconSizePx(context)
+        val key = WeekdayCacheKey(size, dayOfWeek)
+        weekdayCache[key]?.let { return it }
+
+        val bitmap = createBitmap(size, size)
+        val canvas = Canvas(bitmap)
+
+        drawFrame(context, canvas, size)
+        drawCentered(canvas, size, weekdayAbbrev(context, dayOfWeek))
+
+        weekdayCache[key] = bitmap
+        return bitmap
+    }
+
+    fun renderWeekdayIcon(context: Context, dayOfWeek: Int): Icon =
+        Icon.createWithBitmap(renderWeekdayBitmap(context, dayOfWeek))
+
+    /**
+     * [R.array.weekday_abbrev] is ordered Monday-first (index 0) through Sunday
+     * (index 6); [Calendar.DAY_OF_WEEK] is Sunday-first (1) through Saturday (7).
+     */
+    private fun weekdayAbbrev(context: Context, dayOfWeek: Int): String {
+        val mondayFirstIndex = (dayOfWeek + 5) % 7
+        return context.resources.getStringArray(R.array.weekday_abbrev)[mondayFirstIndex]
+    }
 
     /**
      * Twice the nominal 24dp the tile draws its icon at, so the system's downscale
@@ -89,14 +129,13 @@ object TileIconRenderer {
         frame.draw(canvas)
     }
 
-    private fun drawDay(canvas: Canvas, size: Int, dayOfMonth: Int) {
-        val text = dayOfMonth.toString()
+    private fun drawCentered(canvas: Canvas, size: Int, text: String) {
         val scale = size / VIEWPORT
 
         val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
             color = Color.WHITE
             textAlign = Paint.Align.CENTER
-            // Condensed keeps two digits comfortable in a box this narrow.
+            // Condensed keeps two characters comfortable in a box this narrow.
             // Typeface.create falls back to the default family if it is missing.
             typeface = Typeface.create("sans-serif-condensed", Typeface.BOLD)
             textSize = MEASURE_TEXT_SIZE
