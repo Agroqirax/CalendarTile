@@ -47,6 +47,13 @@ internal fun dayBucketFor(beginMillis: Long, allDay: Boolean, nowMillis: Long): 
     }
 }
 
+private fun isMultiDay(candidate: CandidateEvent): Boolean {
+    if (candidate.allDay) return false
+    val beginCal = Calendar.getInstance().apply { timeInMillis = candidate.begin }
+    val endCal = Calendar.getInstance().apply { timeInMillis = candidate.end }
+    return !isSameDay(beginCal, endCal)
+}
+
 private fun isSameDay(a: Calendar, b: Calendar): Boolean =
     a.get(Calendar.YEAR) == b.get(Calendar.YEAR) &&
         a.get(Calendar.DAY_OF_YEAR) == b.get(Calendar.DAY_OF_YEAR)
@@ -172,7 +179,10 @@ object CalendarHelper {
 
         val winner = candidates.minWithOrNull(
             compareBy(
-                { candidate -> if (candidate.allDay) 1 else 0 },
+                // A timed event spanning multiple calendar days behaves like an all-day
+                // event for ranking purposes: it shouldn't outrank a same-day event just
+                // because it's already in progress.
+                { candidate -> if (candidate.allDay || isMultiDay(candidate)) 1 else 0 },
                 { candidate -> if (candidate.begin <= now && candidate.end > now) 0 else 1 },
                 { candidate -> candidate.begin },
                 { candidate -> candidate.end - candidate.begin },
