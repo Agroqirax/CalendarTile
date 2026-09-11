@@ -70,6 +70,17 @@ EVENT_ICONS=(
     work
 )
 
+# Icons whose materialsymbolsrounded/*_fill1_*.xml asset in the upstream
+# GitHub repo is stale: byte-identical to the outline at every weight, so it
+# never actually renders filled. fonts.google.com renders these correctly
+# because it serves from fonts.gstatic.com instead, which has the real glyph.
+# For these, fetch the gstatic SVG and convert it rather than the GitHub XML.
+GSTATIC_FILL_OVERRIDES=(
+    grocery
+)
+
+GSTATIC_BASE="https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded"
+
 force=false
 while getopts "f" opt; do
     case "$opt" in
@@ -77,6 +88,90 @@ while getopts "f" opt; do
         *) exit 1 ;;
     esac
 done
+
+is_gstatic_override() {
+    local name="$1"
+    for n in "${GSTATIC_FILL_OVERRIDES[@]}"; do
+        [ "$n" = "$name" ] && return 0
+    done
+    return 1
+}
+
+# gstatic SVGs use viewBox "0 -960 960 960"; the project's vector drawables
+# use viewportWidth/Height "960 960" with the same glyph shifted to start at
+# y=0. Shifting is just "add 960 to every absolute y", since translation
+# doesn't affect the deltas in relative (lowercase) commands.
+svg_path_to_vector_pathdata() {
+    python3 - "$1" <<'PY'
+import re, sys
+d = sys.argv[1]
+tokens = re.findall(r'[MLHVCSQTAZmlhvcsqtaz]|-?\d+\.?\d*', d)
+params_count = {'M':2,'L':2,'H':1,'V':1,'C':6,'S':4,'Q':4,'T':2,'A':7}
+out, i, cur_cmd = [], 0, None
+while i < len(tokens):
+    tok = tokens[i]
+    if re.match(r'^[MLHVCSQTAZmlhvcsqtaz]$', tok):
+        cur_cmd = tok
+        out.append(tok)
+        i += 1
+        continue
+    letter = cur_cmd.upper()
+    n = params_count[letter]
+    nums = [float(tokens[i + k]) for k in range(n)]
+    i += n
+    if cur_cmd.isupper():
+        if letter == 'V':
+            nums[0] += 960
+        elif letter != 'H':
+            for k in range(1, len(nums), 2):
+                nums[k] += 960
+
+    def fmt(x):
+        return str(int(x)) if x == int(x) else str(x)
+
+    out.append(','.join(fmt(x) for x in nums))
+print(''.join(out))
+PY
+}
+
+fetch_icon_from_gstatic() {
+    local name="$1"
+    local out="$2"
+    local url="$GSTATIC_BASE/$name/fill1/24px.svg"
+
+    local svg
+    if ! svg="$(curl -sf "$url")"; then
+        echo "  FAILED: $name (not found at $url)" >&2
+        return 1
+    fi
+    local raw_path
+    raw_path="$(echo "$svg" | grep -o 'd="[^"]*"' | sed 's/^d="//;s/"$//')"
+    if [ -z "$raw_path" ]; then
+        echo "  FAILED: $name (no path data in $url)" >&2
+        return 1
+    fi
+    local path_data
+    path_data="$(svg_path_to_vector_pathdata "$raw_path")"
+
+    cat > "$out" <<EOF
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="960"
+    android:viewportHeight="960">
+  <path
+      android:fillColor="#e3e3e3"
+      android:pathData="$path_data"/>
+</vector>
+EOF
+
+    if ! xmllint --noout "$out" 2>/dev/null; then
+        rm -f "$out"
+        echo "  FAILED: $name (malformed XML after conversion)" >&2
+        return 1
+    fi
+    echo "  ic_${name}.xml (from gstatic override)"
+}
 
 fetch_icon() {
     local name="$1"
@@ -87,6 +182,11 @@ fetch_icon() {
     if [ -f "$out" ] && [ "$force" = false ]; then
         echo "  ic_${name}.xml (already exists, skipped)"
         return 0
+    fi
+
+    if is_gstatic_override "$name"; then
+        fetch_icon_from_gstatic "$name" "$out"
+        return $?
     fi
 
     # Normalisations, both load-bearing:
