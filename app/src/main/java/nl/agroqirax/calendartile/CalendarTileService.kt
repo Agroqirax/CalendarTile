@@ -1,5 +1,6 @@
 package nl.agroqirax.calendartile
 
+import android.app.KeyguardManager
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.res.Resources
@@ -109,7 +110,14 @@ class CalendarTileService : TileService() {
         val nextEvent = CalendarHelper.getNextEvent(this, ignored)
         currentEvent = nextEvent
 
-        val requireUnlock = CalendarPrefs.isRequireUnlockEnabled(this) && isSecure && isLocked
+        // isLocked mirrors KeyguardManager#isKeyguardLocked(), which stays true while the
+        // lockscreen UI is still showing even after e.g. face unlock has already authenticated
+        // the user. isDeviceLocked() reflects that authentication instead, so it flips to false
+        // as soon as the device is actually unlocked, regardless of whether the keyguard has
+        // been dismissed yet.
+        val keyguardManager = getSystemService(KeyguardManager::class.java)
+        val requireUnlock = CalendarPrefs.isRequireUnlockEnabled(this) && isSecure &&
+            keyguardManager.isDeviceLocked
 
         if (requireUnlock) {
             // Pass no event, so neither its date nor its type can be read off the
